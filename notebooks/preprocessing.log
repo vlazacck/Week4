@@ -1,0 +1,29 @@
+2025-01-04 11:45:00,732 - INFO - Loading dataset from: ../data/merged_train_data.parquet
+2025-01-04 11:45:01,442 - INFO - Applying preprocessing pipeline.
+2025-01-04 11:45:01,442 - INFO - Converting 'Date' column to datetime.
+2025-01-04 11:45:01,962 - INFO - Extracting datetime features.
+2025-01-04 11:45:07,183 - INFO - Adding placeholder holiday proximity features.
+2025-01-04 11:45:07,195 - INFO - Encoding categorical columns.
+2025-01-04 11:45:07,462 - INFO - Scaling numeric features.
+2025-01-04 11:45:10,308 - INFO - Preprocessing complete.
+2025-01-04 11:45:10,376 - INFO - Saving preprocessed data to: ../data/preprocessed_data.parquet
+2025-01-04 12:23:49,311 - INFO - Loading preprocessed data.
+2025-01-04 12:23:56,686 - INFO - combine preprocessor in a column transformer
+2025-01-04 12:24:02,491 - INFO - define the model
+2025-01-04 12:24:02,493 - INFO - Create the pipeline
+2025-01-04 12:24:05,954 - INFO - train model.
+2025-01-04 15:43:19,836 - INFO - Starting holiday feature calculation.
+2025-01-04 15:43:19,839 - INFO - Calculating 'Days_To_Holiday' and 'Days_After_Holiday' features.
+2025-01-05 12:39:41,083 - INFO - Starting holiday feature calculation.
+2025-01-05 12:40:15,252 - INFO - Starting holiday feature calculation.
+2025-01-05 12:41:00,994 - INFO - Starting holiday feature calculation.
+2025-01-05 12:41:31,695 - INFO - Starting holiday feature calculation.
+2025-01-05 12:41:31,697 - INFO - Calculating 'Days_To_Holiday' and 'Days_After_Holiday' features.
+2025-01-05 12:41:31,728 - ERROR - Error during holiday feature calculation: unsupported operand type(s) for -: 'Timestamp' and 'str'
+2025-01-05 12:43:04,098 - INFO - Starting preprocessing with holiday feature calculation.
+2025-01-05 12:43:04,098 - INFO - Starting holiday feature calculation.
+2025-01-05 12:43:04,465 - INFO - Converted 'Date' column to datetime.
+2025-01-05 12:45:13,825 - INFO - 'Days_To_Holiday' calculated successfully.
+2025-01-05 12:46:40,793 - INFO - 'Days_After_Holiday' calculated successfully.
+2025-01-05 12:46:40,812 - INFO - NaN values in 'Days_After_Holiday' replaced with 0.
+2025-01-05 12:46:40,812 - INFO - Finished preprocessing. Here are the first few rows of the holiday features.
