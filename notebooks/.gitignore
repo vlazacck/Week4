@@ -1,0 +1,12 @@
+# Exclude virtual environment
+venv/
+
+# Exclude serialized models
+serialized_models/
+
+# Exclude Git metadata (if misplaced)
+.git/
+
+# Exclude other large or temporary files
+*.pkl
+*.csv
