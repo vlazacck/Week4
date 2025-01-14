@@ -41,7 +41,7 @@ promo_filter = st.sidebar.selectbox(
 
 # Apply filters
 filtered_data = data[(data['Store'].isin(selected_stores)) &
-                     (data['Sales'] >= min_sales) &
+                     (data['Sales'] >= min_sales) & 
                      (data['Sales'] <= max_sales)]
 
 if promo_filter == "Promotion":
@@ -99,7 +99,58 @@ def plot_sales_by_day(data):
     plt.ylabel("Average Sales", fontsize=12)
     st.pyplot(plt.gcf())
 
-# Generate Charts
+# 4. Feature Importances (Task 2.4)
+@st.cache_data
+def load_feature_importances():
+    feature_importances_path = "../notebooks/outputs/feature_importance.csv"  # Update path
+    return pd.read_csv(feature_importances_path)
+
+def plot_feature_importances(data):
+    st.subheader("Feature Importances")
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=data, x='Importance', y='Feature', palette=selected_palette)
+    plt.title("Feature Importance", fontsize=14)
+    plt.xlabel("Importance", fontsize=12)
+    plt.ylabel("Feature", fontsize=12)
+    st.pyplot(plt.gcf())
+
+# 5. Residuals Plot (Task 2.3)
+@st.cache_data
+def load_residuals():
+    residuals_path = "../notebooks/outputs/residuals_with_loss_function.png"  # Update path
+    return residuals_path
+
+def plot_residuals():
+    st.subheader("Residuals Plot")
+    st.image(load_residuals(), caption="Residuals with Loss Function", use_column_width=True)
+
+# 6. Confidence Intervals (Task 2.4)
+@st.cache_data
+def load_predictions():
+    predictions_path = "../notebooks/outputs/predictions_with_confidence_intervals.csv"  # Update path
+    return pd.read_csv(predictions_path)
+
+def plot_confidence_intervals(data):
+    st.subheader("Confidence Intervals of Predictions")
+    plt.figure(figsize=(10, 6))
+    plt.fill_between(data.index, data['Lower Bound'], data['Upper Bound'], color='gray', alpha=0.3, label='Confidence Interval')
+    plt.plot(data.index, data['Predicted'], color='blue', label='Predicted')
+    plt.title("Predictions with Confidence Intervals", fontsize=14)
+    plt.xlabel("Index", fontsize=12)
+    plt.ylabel("Predictions", fontsize=12)
+    plt.legend()
+    st.pyplot(plt.gcf())
+
+# Display all charts
 plot_sales_trends(filtered_data)
 plot_promotion_comparison(filtered_data)
 plot_sales_by_day(filtered_data)
+
+# Display Task 2.4 and Task 2.3 outputs
+feature_importances = load_feature_importances()
+plot_feature_importances(feature_importances)
+plot_residuals()
+
+# Display Task 2.4 Confidence Intervals
+predictions = load_predictions()
+plot_confidence_intervals(predictions)
